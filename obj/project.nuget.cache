@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "LLTnUDHVDKdRPG3FbenjsDE/BeCQE+IWD55IX2goVk2IR2PsOpwMC7CLTNSY7/ymYmASn1V1JNsAK7FMYJmaag==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Riette\\Documents\\mvc_ecommerce_final_project_ifundi\\mvc_ecommerce_tutorial.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Riette\\.nuget\\packages\\mysqlconnector\\0.61.0\\mysqlconnector.0.61.0.nupkg.sha512",
+    "C:\\Users\\Riette\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}

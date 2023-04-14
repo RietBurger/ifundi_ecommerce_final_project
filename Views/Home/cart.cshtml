@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Cart";
+}
+<h1>@ViewData["Title"]</h1>
+
+@* <div>
+<h2 class="display-4">User ID @ViewBag.UserID</h2>
+</div> *@
+
+@model IEnumerable<CartModel>
+
+   @* display data obtained from DB *@
+
+          <!-- Start Cart Area  -->
+                        <table class="table axil-product-table axil-cart-table mb--40">
+                            <thead>
+                                <tr>
+                                    <th>| Image |</th>
+                                    <th>| Product |</th>
+                                    <th>| Description |</th>
+                                    <th>| Qty |</th>
+                                    <th>| Adjust</th>
+                                    <th>Quantity | </th>
+                                    <th>| Price |</th>
+                                    <th>| Total |</th>
+                                    <th>| Delete Item |</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 @foreach (CartModel item in @Model)
+                                    {
+                                <tr>
+                                    <td><img class="card-img-top" src="~/Images/@item.imgSrc" alt="Card image cap" width="50" height="75"></td>
+                                    <td>@item.name</td>
+                                    <td>@item.description</td>
+                                    <td>@item.qtySelected</td>
+                                    <td><a class="btn btn-secondary" asp-controller="Home" asp-action="Minus" asp-route-level="@item.qtySelected" asp-route-id="@item.cartID">-</a></td>
+                                    <td><a class="btn btn-secondary" asp-controller="Home" asp-action="Plus" asp-route-level="@item.qtySelected" asp-route-id="@item.cartID">+</a></td>
+                                    <td>R @item.price</td>
+                                    <td>R @item.Total</td>
+                                    <td><a class="btn btn-secondary" asp-controller="Home" asp-action="Delete" asp-route-id="@item.cartID">Delete Item</a></td>
+                                    @* <td><a class="btn btn-secondary" asp-controller="Home" asp-action="Update" asp-route-id="@item.cartID" >Update Qty</a></td> *@
+                                    @* make the math work below *@
+                                    @* <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R</span>@(item.price*item.qtySelected)</td> *@
+                                    @* <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @item.grandTotal</span>0</td> *@
+                                </tr>
+                                    }
+
+                            </tbody>
+                        </table>
+
+                        <table class="table axil-product-table axil-cart-table mb--40">
+                            <thead>
+                                <tr>
+                                    <th><h2>Sub Total</h2></th>
+                                    <th><h2>Delivery</h2></th>
+                                    <th><h2>Grand Total</h2></th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <tr>
+                                    <td><h3 class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @ViewBag.subTotal</span></h3></td>
+                                    <td><h3 class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @ViewBag.delivery</span></h3></td>
+                                    <td><h3 class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @ViewBag.grandTotal</span></h3></td>
+                                </tr> 
+                            </tbody>
+                        </table>
+  @* <div>                          
+                                <h2>Sub Total</h2>
+                                <h3 class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @ViewBag.subTotal</span></h3>
+                                <h2>Delivery</h2>
+                                <h3 class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @ViewBag.delivery</span></h3>
+                                <h2>Grand Total</h2>
+                                <h3 class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">R @ViewBag.grandTotal</span></h3>
+                                </div> *@
+
+<form action="https://sandbox.payfast.co.za​/eng/process" method="post">
+   <input type="hidden" name="merchant_id" value="10029187">
+   <input type="hidden" name="merchant_key" value="5slo50bfv3kmo">
+   <input type="hidden" name="amount" value="@ViewBag.grandTotal">
+   <input type="hidden" name="item_name" value="Test Product">
+   <input type="Submit" class="btn btn-primary">
+</form> 
+
+
+                   

@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h1>@ViewData["Title"]</h1>
+@* 
+<div class="text-center">
+    <h1 class="display-4">Register</h1>
+</div> *@
+    
+
+    
+    
+
+
+@* 
+ display variables 
+<h4 style="color:purple">
+    <b>FirstName:</b>    @ViewBag.FirstName <br />
+    <b>LastName:</b>  @ViewBag.LastName <br />
+    <b>Email:</b> @ViewBag.Email <br />
+    <b>Password:</b> @ViewBag.Password <br />
+    <b>Encrypted Password:</b> @ViewBag.enPassword <br />
+    <b>Decrypted Password:</b> @ViewBag.dePassword <br />
+</h4>
+<hr /> *@
+
+
+@* obtain values to insert into DB *@
+@* <h3><b>Forms: Weakly Typed</b></h3> *@
+
+@* <button onclick="toggleVisibility()">Try it</button> *@
+
+<h3 style="text-align: center;color:darkblue">@ViewBag.Err</h3>
+
+<p>Please see comments next to fields, explaining what we use your information for</p>
+
+<div class="jumbotron">  
+<form action="Profile" method="post">
+    <table>
+        <tr>
+            <td>First Name: </td>
+            <td><input type="text" required="" name="FirstName" /></td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td><input type="text" name="LastName" /></td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" required="" name="Email" /></td>
+            <td style="color:gray;"> To be able to contact you and update you on your order process. </td>
+            <td>@ViewBag.emailErr</td>
+        </tr>
+        <tr>
+            <td>Street Name and Number: </td>
+            <td><input type="text" required="" name="Street" id="street"/></td>
+            <td style="color:gray;"> For delivery address </td>            
+        </tr>
+         <tr>
+            <td>Complex Name and Number: </td>
+            <td><input type="text" required="" name="Complex" id="complex"/></td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+        <tr>
+            <td>Postal Code: </td>
+            <td><input type="text" required="" name="PostalCode" id="postalCode"/>
+            </td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+        <tr>
+            <td>Suburb: </td>
+            <td><input type="text" required="" name="Suburb" id="suburb"/>
+            </td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+        <tr>
+            <td>Province: </td>
+            <td><input type="text" required="" name="Province" id="province"/>
+            </td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+                <tr>
+            <td>Country: </td>
+            <td><input type="text" required="" name="Country" id="country"/></td>
+            <td style="color:gray;"> For delivery address </td>
+        </tr>
+    </table>
+    <div class="row">
+        <input type="submit" value="Update Profile" class="btn btn-primary"/>
+</div>
+
+</form>
+</div>  
+
+

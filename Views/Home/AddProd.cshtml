@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Add Products";
+}
+
+@* should only be visible and usable when admin signs in *@
+
+
+<div class="jumbotron">  
+<form action="AddProd" method="post">
+    <table>
+        <tr>
+            <td>Product Name: </td>
+            <td><input type="text" required="" name="Name" /></td>
+        </tr>
+        <tr>
+            <td>Product Description: </td>
+            <td><input type="text" name="Desc" /></td>
+        </tr>
+        <tr>
+            <td>Price: </td>
+            <td><input type="text" required="" name="Price" /></td>
+            <td>@ViewBag.err</td>
+        </tr>
+        <tr>
+            <td>Quantity Available: </td>
+            <td><input type="text" required="" name="Qty" /></td>
+            <td>@ViewBag.err</td>
+        </tr>
+        <tr>
+            <label for="Product Image">Product Image</label>
+            <input type="file" class="form-control-file" name="ImgSource" id="file">
+        </tr>
+        @* Category should be a dropdown list *@
+        <tr>
+            <td>Category ID: </td>
+            <td><input type="text" required="" name="CatID" /></td>
+            <td>@ViewBag.err</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Submit Form"/></td>
+        </tr>
+    </table>
+    
+</form>
+</div>  
+

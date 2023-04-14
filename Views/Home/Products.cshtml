@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Products";
+
+}
+@model IEnumerable<ProductModel>
+
+   @* display data obtained from DB *@
+   @using (@Html.BeginForm("ProductsDetail", "Sample", FormMethod.Post))
+   {
+          <div class="row">
+@foreach (ProductModel product in Model )
+        {
+
+  <div class="col-sm-4">
+<div class="card">
+  <div class="card-header">
+    @product.CategoryName
+  </div>
+  <a href="./ProductsDetail/@product.ProdID">
+  <img class="card-img-top" src="~/Images/@product.ImgSource" alt="Card image cap" width="250px" height="250px">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title" name="ProdName">@product.Name</h5>
+    @* <p class="card-text">Images/@product.ImgSource</p> *@
+    <p class="card-text">@product.Desc</p>
+    <p class="card-text">Price: R @product.Price</p>
+    <p class="card-text"> Quantity available @product.Qty</p>
+    <div class="counter">
+  <span class="down" onClick='decreaseCount(event, this)'>-</span>
+  <input type="text" value="1">
+  <span class="up" onClick='increaseCount(event, this, @product.Qty)'>+</span>
+</div>
+    @* <button class="btn btn-primary" id="Detailed" type="submit"> More info </button>
+    <button class="btn btn-primary" id="Cart">Add to Cart</button>  *@
+    <a asp-controller="Home" asp-action="ProductsDetail"  asp-route-id="@product.ProdID" class="btn btn-primary"> More info</a>
+    <a asp-controller="Home" asp-action="Cart" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
+          </div>
+          <br/>
+
+        } 
+
+          </div>
+   }
+
+
+

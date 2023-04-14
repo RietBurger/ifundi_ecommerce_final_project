@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\mvc_ecommerce_tutorial.props" />
+</Project>

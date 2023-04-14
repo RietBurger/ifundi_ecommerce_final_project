@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Reset Password";
+}
+
+<h1>@ViewData["Title"]</h1>
+@* 
+<div class="text-center">
+    <h1 class="display-4">Register</h1>
+</div> *@
+    
+
+    
+    
+
+
+
+ @* display variables  *@
+@* <h4 style="color:purple">
+    <b>FirstName:</b>    @ViewBag.FirstName <br />
+    <b>LastName:</b>  @ViewBag.LastName <br />
+    <b>Email:</b> @ViewBag.Email <br />
+    <b>Password:</b> @ViewBag.Password <br />
+    <b>Encrypted Password:</b> @ViewBag.enPassword <br />
+    <b>Decrypted Password:</b> @ViewBag.dePassword <br />
+</h4>
+<hr /> *@
+
+
+@* obtain values to insert into DB *@
+@* <h3><b>Forms: Weakly Typed</b></h3> *@
+
+@* <button onclick="toggleVisibility()">Try it</button> *@
+
+<div class="jumbotron">  
+<form action="ResetPWD" method="post">
+    <table>
+        <tr>
+            <td>First Name: </td>
+            <td><input type="text" required="" name="FirstName" /></td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td><input type="text" name="LastName" /></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" required="" name="Email" /></td>
+            <td>@ViewBag.err</td>
+        </tr>
+        <tr>
+            <td>New Password: </td>
+            <td><input type="password" required="" name="Password" id="password"/>
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            </td>
+        </tr>
+        @* <tr>
+             <tr>
+            <td>Re-Enter Password: </td>
+            <td><input type="password" required="" name="Password2" id="password2"/>
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            </td>
+        </tr> *@
+    </table>
+    <div class="row">
+        <input type="submit" value="Reset" class="btn btn-primary"/>
+        <a asp-controller="Home" asp-action="Login" class="btn btn-secondary">Login</a>
+        <a asp-controller="Home" asp-action="Register" class="btn btn-secondary">Register</a>
+</div>
+    
+</form>
+</div>  
+
+<script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+
+        // prevent form submit
+        const form = document.querySelector("form");
+        form.addEventListener('submit', function (e) {
+          if (password.value == "")
+            {
+               e.preventDefault();
+            }
+        }); 
+    </script>
+
+<script>
+function toggleVisibility() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+

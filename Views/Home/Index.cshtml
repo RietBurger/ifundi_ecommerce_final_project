@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @ViewBag.FirstName</h1>
+@* <img src="Images/@ViewBag.imgSrc" width="50%" height="50%"/> *@
+
+@model IEnumerable<ProductModel>
+
+   @* display data obtained from DB *@
+   @using (@Html.BeginForm("ProductsDetail", "Sample", FormMethod.Post))
+   {
+          <div class="row">
+@foreach (ProductModel product in Model )
+        {
+
+  <div class="col-sm-4">
+<div class="card">
+  <div class="card-header">
+    @product.CategoryName
+  </div>
+  @* <a href="./ProductsDetail/id?@product.ProdID"> *@
+  <a asp-action="ProductsDetail" asp-controller="Home" asp-route-id="@product.ProdID">
+  <img class="card-img-top" src="~/Images/@product.ImgSource" alt="Card image cap" width="250px" height="250px">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title" name="ProdName">@product.Name</h5>
+    @* <p class="card-text">Images/@product.ImgSource</p> *@
+    <p class="card-text">@product.Desc</p>
+    <p class="card-text">Price: R @product.Price</p>
+    <p class="card-text"> Quantity available @product.Qty</p>
+    <div class="counter">
+      @* <div hidden="true" id="hidTabIndexID">@product.QtySelected</div> *@
+      @* Don't know how to pass this value to my controller, thus remove from here, do normal input box in Cart view, where QTY can be updated... *@
+  @* <span class="down" onClick='decreaseCount(event, this)'>-</span>
+  <input type="text" value="1" id="hidTabIndexID" name="QtySelected">
+  <span class="up" onClick='increaseCount(event, this, @product.Qty)'>+</span> *@
+</div>
+    @* <button class="btn btn-primary" id="Detailed" type="submit"> More info </button>
+    <button class="btn btn-primary" id="Cart">Add to Cart</button>  *@
+    <a asp-controller="Home" asp-action="ProductsDetail"  asp-route-id="@product.ProdID" class="btn btn-primary"> More info</a>
+    @* want level to be customer id -- have this in global model... level , type to be product qty and id to be product id. KEEP BELOW FOR REFERENCE *@ 
+    @* <a asp-controller="Home" asp-action="addToCart"  asp-route-level="@product.Name" asp-route-type="@product.QtySelected" asp-route-id="@product.ProdID" class="btn btn-primary"> Add to Cart</a> *@
+    <a asp-controller="Home" asp-action="addToCart"  asp-route-id="@product.ProdID" class="btn btn-primary"> Add to Cart</a>
+    @* <a asp-controller="Home" asp-action="Cart" class="btn btn-primary">Add to Cart</a> *@
+  </div>
+</div>
+          </div>
+          <br/>
+
+        } 
+
+          </div>
+   }
+
+
+
+
+</div>
+

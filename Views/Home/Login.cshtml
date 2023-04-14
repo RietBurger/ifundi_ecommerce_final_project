@@ -1,0 +1,84 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<h1>@ViewData["Title"]</h1>
+@* <p>Welcome @ViewBag.FirstName</p>
+<p>Email @ViewBag.Mail</p>
+<p>UserID @ViewBag.UserID</p> *@
+
+
+@* <div class="text-center">
+    <h1 class="display-4">Login</h1>
+</div> *@
+
+@* add this in some form if you don't want visitors to create a cart *@
+@* <h3 style="color:darkblue;background-color: #e3f2fd;">@ViewBag.notLoggedIn</h3> *@
+
+@* <div>
+<div class="card" style="width:18rem;">
+  <div class="card-header" style="background-color: #e3f2fd;">
+    Login
+  </div>
+  <div class="card-body"> *@
+    
+
+<div class="jumbotron"> 
+<form action="Login" method="post">
+    @* <img src="../Images/img2.jpg" class="card-img-left" alt="..." width="25%" height="25%"> *@
+    <p class="card-text">Email</p>
+    <p><input type="text" required="" name="Email"/></p>
+    <p class="card-text">Password</p>
+    <p><input type="password" required="" name="Password" id="password"/>
+    <i class="bi bi-eye-slash" id="togglePassword"></i></p>
+
+
+    <p style="color:red"> @ViewBag.Err</p>
+    <div class="row">
+    <input type="submit" value="Login" class="btn btn-primary"/>
+    <a asp-controller="Home" asp-action="Register" class="btn btn-secondary" >Register</a>
+    <a asp-controller="Home" asp-action="ResetPWD"class="btn btn-secondary" >Forgot Password</a>
+    </div>
+    @* <table>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" required="" name="Email"/></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input type="password" required="" name="Password" id="password"/>
+            <i class="bi bi-eye-slash" id="togglePassword"></i></td>
+        </tr>
+        <tr>
+          <td style="color:red">@ViewBag.Err</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Submit Form" class="btn btn-primary"/></td>
+        </tr>
+    </table> *@
+    
+</form>
+  </div>
+
+@* should these go in site.js? *@
+<script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+
+        // prevent form submit
+        const form = document.querySelector("form");
+        form.addEventListener('submit', function (e) {
+          if (password.value == "")
+            {
+               e.preventDefault();
+            }
+        }); 
+    </script>
